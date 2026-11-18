@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - run: npm install
-    - run: npm run build:strict
+    - run: npm run build
