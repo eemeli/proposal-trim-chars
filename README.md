@@ -14,9 +14,10 @@ However, currently String trimming is restricted to only trimming white space,
 which is defined as:
 
 > The definition of white space is the union of _WhiteSpace_ and _LineTerminator_.
-> When determining whether a Unicode code point is in Unicode general category “Space_Separator” (“Zs”),
-> code unit sequences are interpreted as UTF-16 encoded code point sequences as specified in
-> [6.1.4](https://tc39.es/ecma262/#sec-ecmascript-language-types-string-type).
+
+where the _WhiteSpace_ [definition](https://tc39.es/ecma262/#table-white-space-code-points) includes
+
+> any code point in general category “Space_Separator”
 
 This is somewhat problematic for at least two reasons:
 
