@@ -4,7 +4,7 @@
 - Champion: [Eemeli Aro](https://github.com/eemeli)
 
 When processing String values from user input or otherwise,
-needing to remove (i.e. trim) the String of its outer whitespace or other characters is a very common need.
+needing to trim the String of its outer whitespace or other characters is a very common need.
 JavaScript supports this with the
 [String.prototype.trim](https://tc39.es/ecma262/#sec-string.prototype.trim),
 [.trimStart](https://tc39.es/ecma262/#sec-string.prototype.trimstart), and
