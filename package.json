@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "npm run build -- --watch",
+    "prebuild": "mkdir -p build",
+    "build": "ecmarkup --load-biblio @tc39/ecma262-biblio --verbose spec.emu build/index.html --lint-spec",
+    "build:strict": "npm run build -- --strict"
+  },
+  "devDependencies": {
+    "@tc39/ecma262-biblio": "^2.2.3254",
+    "ecmarkup": "^25.1.0"
+  }
+}
