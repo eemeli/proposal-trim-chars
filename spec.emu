@@ -13,12 +13,12 @@ contributors: Eemeli Aro
   <h1>Properties of the String Prototype Object</h1>
 
   <emu-clause id="sec-string.prototype.trim" type="built-in function" number="32">
-    <h1>String.prototype.trim ( )</h1>
+    <h1>String.prototype.trim ( <ins>[ _characters_ ]</ins> )</h1>
     <p>This method interprets a String value as a sequence of UTF-16 encoded code points, as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>.</p>
     <p>It performs the following steps when called:</p>
     <emu-alg>
       1. Let _thisValue_ be the *this* value.
-      1. Return ? TrimString(_thisValue_, ~start+end~).
+      1. Return ? TrimString(_thisValue_, ~start+end~<ins>, _characters_</ins>).
     </emu-alg>
     <emu-note>
       <p>This method is intentionally generic; it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</p>
@@ -29,6 +29,7 @@ contributors: Eemeli Aro
         TrimString (
           _string_: an ECMAScript language value,
           _where_: ~start~, ~end~, or ~start+end~,
+          <ins>optional _characters_: a String,</ins>
         ): either a normal completion containing a String or a throw completion
       </h1>
       <dl class="header">
@@ -38,26 +39,31 @@ contributors: Eemeli Aro
       <emu-alg>
         1. Perform ? RequireObjectCoercible(_string_).
         1. Let _str_ be ? ToString(_string_).
+        1. <ins>If _characters_ is *undefined*, then</ins>
+          1. <ins>Let _trimSet_ be the set of code points that is the union of |WhiteSpace| and |LineTerminator|.</ins>
+        1. <ins>Else,</ins>
+          1. <ins>If _characters_ is not a String, throw a *TypeError* exception.</ins>
+          1. <ins>Let _trimSet_ be the set of unique code points in _characters_.</ins>
         1. If _where_ is ~start~, then
-          1. Let _trimmedString_ be the String value that is a copy of _str_ with leading white space removed.
+          1. Let _trimmedString_ be the String value that is a copy of _str_ with leading <del>white space</del><ins>code points in _trimSet_</ins> removed.
         1. Else if _where_ is ~end~, then
-          1. Let _trimmedString_ be the String value that is a copy of _str_ with trailing white space removed.
+          1. Let _trimmedString_ be the String value that is a copy of _str_ with trailing <del>white space</del><ins>code points in _trimSet_</ins> removed.
         1. Else,
           1. Assert: _where_ is ~start+end~.
-          1. Let _trimmedString_ be the String value that is a copy of _str_ with both leading and trailing white space removed.
+          1. Let _trimmedString_ be the String value that is a copy of _str_ with both leading and trailing <del>white space</del><ins>code points in _trimSet_</ins> removed.
         1. Return _trimmedString_.
       </emu-alg>
-      <p>The definition of white space is the union of |WhiteSpace| and |LineTerminator|. When determining whether a Unicode code point is in Unicode general category “Space_Separator” (“Zs”), code unit sequences are interpreted as UTF-16 encoded code point sequences as specified in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>.</p>
+      <p><del>The definition of white space is the union of |WhiteSpace| and |LineTerminator|.</del> When determining whether a Unicode code point is in Unicode general category “Space_Separator” (“Zs”), code unit sequences are interpreted as UTF-16 encoded code point sequences as specified in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>.</p>
     </emu-clause>
   </emu-clause>
 
   <emu-clause id="sec-string.prototype.trimend" type="built-in function">
-    <h1>String.prototype.trimEnd ( )</h1>
+    <h1>String.prototype.trimEnd ( <ins>[ _characters_ ]</ins> )</h1>
     <p>This method interprets a String value as a sequence of UTF-16 encoded code points, as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>.</p>
     <p>It performs the following steps when called:</p>
     <emu-alg>
       1. Let _str_ be the *this* value.
-      1. Return ? TrimString(_str_, ~end~).
+      1. Return ? TrimString(_str_, ~end~<ins>, _characters_</ins>).
     </emu-alg>
     <emu-note>
       <p>This method is intentionally generic; it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</p>
@@ -65,12 +71,12 @@ contributors: Eemeli Aro
   </emu-clause>
 
   <emu-clause id="sec-string.prototype.trimstart" type="built-in function">
-    <h1>String.prototype.trimStart ( )</h1>
+    <h1>String.prototype.trimStart ( <ins>[ _characters_ ]</ins> )</h1>
     <p>This method interprets a String value as a sequence of UTF-16 encoded code points, as described in <emu-xref href="#sec-ecmascript-language-types-string-type"></emu-xref>.</p>
     <p>It performs the following steps when called:</p>
     <emu-alg>
       1. Let _str_ be the *this* value.
-      1. Return ? TrimString(_str_, ~start~).
+      1. Return ? TrimString(_str_, ~start~<ins>, _characters_</ins>).
     </emu-alg>
     <emu-note>
       <p>This method is intentionally generic; it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</p>
