@@ -77,7 +77,7 @@ jsonValue.trim("\r\n\t ");
 
 The `.trim()` argument could accept an iterable of characters instead of a String,
 which would allow for e.g. `[" ", ":"]` to be used as a value.
-When iterating, we would then need to check that each value has a length of 1,
+When iterating, we would then need to check that each value consists of a single code point,
 which seems like an unnecessary complication.
 
 Rather than adding an argument to the existing functions,
